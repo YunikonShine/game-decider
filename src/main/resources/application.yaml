@@ -1,0 +1,4 @@
+api:
+  url:
+    steamCommunity: https://steamcommunity.com
+    steamCmd: https://api.steamcmd.net/v1
