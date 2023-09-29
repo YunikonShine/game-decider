@@ -1,9 +1,23 @@
 package br.com.byron.gamefinder.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class TagUtils {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@Component
+public class SteamUtils {
+
+    @Value("${api.url.steamStore}")
+    private String steamStoreUrl;
+
+    public String getSteamStoreUrl(List<String> tags) {
+        String steamPrefix = steamStoreUrl + "/search/?ndl=1&tags=";
+        return tags.stream().collect(Collectors.joining("%2C", steamPrefix, ""));
+    }
 
     public static Map<Integer, String> getTagList() {
         final Map<Integer, String> tagIdToName = new HashMap<>();
